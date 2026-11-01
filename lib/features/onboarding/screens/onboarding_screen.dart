@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:drift/drift.dart' show Value;
 import '../../../core/design/tokens.dart';
 import '../../../core/widgets/app_text_field.dart';
+import '../../../data/database.dart';
+import '../../../features/settings/providers/business_profile_providers.dart';
 import '../../../services/settings_service.dart';
-
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -55,6 +57,23 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void _skip() => _finish();
 
   Future<void> _finish() async {
+    // Save all collected business profile data via the existing repository
+    await ref.read(businessProfileRepositoryProvider).upsertProfile(
+      BusinessProfilesCompanion(
+        name: Value(_bizName.text.trim().isEmpty ? 'My Business' : _bizName.text.trim()),
+        ownerName: Value(_ownerName.text.trim()),
+        address: Value(_address.text.trim()),
+        taxId: Value(_taxId.text.trim()),
+        paymentInstructions: Value([
+          if (_mpesa.text.trim().isNotEmpty) 'M-Pesa: ${_mpesa.text.trim()}',
+          if (_bank.text.trim().isNotEmpty) _bank.text.trim(),
+          if (_paypal.text.trim().isNotEmpty) 'PayPal: ${_paypal.text.trim()}',
+        ].join('\n')),
+        currencyCode: Value(_currency),
+        defaultTaxRateBps: Value(_vatBps),
+        createdAt: Value(DateTime.now().millisecondsSinceEpoch ~/ 1000),
+      ),
+    );
     await ref.read(settingsProvider.notifier).setOnboardingComplete(true);
     if (mounted) context.go('/documents');
   }

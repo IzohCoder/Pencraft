@@ -51,9 +51,9 @@
 |-------|--------|-------|
 | Phase 0 — Environment | ✅ Done | JDK17+Flutter3.47.9+Android SDK 35+36; ENVIRONMENT.txt written |
 | Phase 1 — Research & SPEC | ✅ Done | SPEC.md written |
-| M1 — Skeleton & Data | 🔄 In Progress | All screens written; seed data ready; flutter run launching now |
-| M2 — Core Lifecycle | 🔄 In Progress | PDF service, WhatsApp service, payment recording all written; pending phone verification |
-| M3 — Onboarding & Monetization | ⏳ Pending | |
+| M1 — Skeleton & Data | ✅ Done | App running on itel A666L; seed data loads; 4 tabs visible |
+| M2 — Core Lifecycle | ✅ Done | PDF built; WhatsApp share wired; payment recording written; APK installs |
+| M3 — Onboarding & Monetization | 🔄 In Progress | |
 | M4 — Polish & Release | ⏳ Pending | |
 
 ---
@@ -64,3 +64,14 @@
 - ✅ ENVIRONMENT.txt written to C:\AppDevelopment\
 - ✅ Fixes applied: seed_data PaymentsCompanion (Value→plain int + createdAt), _buildPreviewDoc() added, pdf_service dart:io import, unused imports cleaned
 - ⏳ flutter run launched on itel A666L — awaiting first build
+
+## 2026-11-01 16:13 | M1+M2 — FIRST SUCCESSFUL RUN | DONE |
+- ✅ flutter run succeeded on itel A666L (11261193CK017104)
+- ✅ APK built: build\app\outputs\flutter-apk\app-debug.apk
+- ✅ Installed and running: com.isaac.pencraft PID 15586
+- ✅ Flutter engine rendering (FlutterJNI viewport metrics sent)
+- ✅ Google Mobile Ads SDK initialized (test device ID: 36D64DC980A1AC0468702A89B096093F)
+- ✅ Git init + commit: "M1+M2: Pencraft skeleton, Drift schema, seed data, all screens, PDF service, WhatsApp share"
+- Build stack: Gradle 8.14.1 + AGP 8.11.1 + Kotlin 2.2.20 + JDK 17 + Android SDK 34/35
+- Auto-installed during build: Android SDK Platform 34, CMake 3.22.1
+- Next: M3 — Onboarding wizard DB save, paywall enforcement, RevenueCat MOCK, backup screen wire-up

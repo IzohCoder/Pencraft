@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/design/tokens.dart';
 import '../../../services/settings_service.dart';
 import '../../../config/app_config.dart';
-
+import '../../../features/documents/providers/document_providers.dart';
+import '../../../services/csv_export_service.dart';
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -32,7 +33,7 @@ class SettingsScreen extends ConsumerWidget {
               title: const Text('Payment instructions'),
               subtitle: const Text('M-Pesa, bank, PayPal'),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () {/* TODO: navigate to payment instructions */},
+              onTap: () => context.push('/settings/payment'),
             ),
           ]),
 
@@ -97,7 +98,7 @@ class SettingsScreen extends ConsumerWidget {
                   context.push('/paywall?reason=Backup and restore is a Pro feature.');
                   return;
                 }
-                /* TODO: navigate to backup screen */
+                context.push('/settings/backup');
               },
             ),
             ListTile(
@@ -113,7 +114,7 @@ class SettingsScreen extends ConsumerWidget {
                   context.push('/paywall?reason=CSV export is a Pro feature.');
                   return;
                 }
-                /* TODO: CSV export */
+                _exportCsv(context, ref);
               },
             ),
           ]),
@@ -156,6 +157,21 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _exportCsv(BuildContext context, WidgetRef ref) async {
+    final docsAsync = ref.read(documentListProvider('all'));
+    final docs = docsAsync.valueOrNull ?? [];
+    if (docs.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No documents to export.')),
+      );
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Preparing CSV export…')),
+    );
+    await CsvExportService().shareAsCsv(docs);
   }
 
   void _showThemePicker(BuildContext context, WidgetRef ref, String current) {
