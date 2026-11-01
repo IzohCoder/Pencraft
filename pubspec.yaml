@@ -1,0 +1,88 @@
+name: pencraft
+description: Invoice and estimate maker for freelancers and small businesses.
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # Navigation
+  go_router: ^14.6.2
+
+  # Local database
+  drift: ^2.21.0
+  drift_flutter: ^0.2.2
+  sqlite3_flutter_libs: ^0.5.24
+
+  # IAP
+  purchases_flutter: ^8.2.2
+
+  # Ads
+  google_mobile_ads: ^5.2.0
+
+  # Utilities
+  shared_preferences: ^2.3.3
+  intl: ^0.19.0
+  share_plus: ^10.1.2
+  path_provider: ^2.1.5
+
+  # PDF
+  pdf: ^3.11.1
+  printing: ^5.14.1
+
+  # Image
+  image_picker: ^1.1.2
+  image_cropper: ^12.2.1
+
+  # Signature
+  signature: ^5.4.0
+
+  # File
+  file_picker: ^8.1.4
+  open_filex: ^4.5.1
+
+  # Icons
+  phosphor_flutter: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  drift_dev: ^2.21.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/
+
+  fonts:
+    - family: DMSerifDisplay
+      fonts:
+        - asset: assets/fonts/DMSerifDisplay-Regular.ttf
+        - asset: assets/fonts/DMSerifDisplay-Italic.ttf
+          style: italic
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf
+          weight: 700
