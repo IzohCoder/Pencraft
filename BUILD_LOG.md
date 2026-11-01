@@ -75,3 +75,13 @@
 - Build stack: Gradle 8.14.1 + AGP 8.11.1 + Kotlin 2.2.20 + JDK 17 + Android SDK 34/35
 - Auto-installed during build: Android SDK Platform 34, CMake 3.22.1
 - Next: M3 — Onboarding wizard DB save, paywall enforcement, RevenueCat MOCK, backup screen wire-up
+
+## 2026-11-01 16:34 | M4 — Polish & Release | IN PROGRESS |
+- ✅ Launcher icons generated (mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi + round) — "P" lettermark, sealing-wax red circle on warm white
+- ✅ Splash screen — warm paper #FAF7F2 background + centered icon
+- ✅ R8 minification enabled in build.gradle.kts (release builds)
+- ✅ proguard-rules.pro created
+- ✅ PRIVACY_POLICY.md written
+- ✅ SIGNING.md written (commands only, no keystore created)
+- ✅ version: 1.0.0+1 already set in pubspec.yaml
+- 🔄 flutter build apk --release launching...

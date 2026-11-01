@@ -29,8 +29,14 @@ android {
 
     buildTypes {
         release {
-            // Signing with debug keys for now; add proper signing config before release.
+            // Signing with debug keys; see SIGNING.md to set up a proper keystore.
             signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }
